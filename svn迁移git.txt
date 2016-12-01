@@ -1,0 +1,107 @@
+
+git config --list
+--svn2git必备条件
+yum install ruby
+sudo yum install rubygems ruby-devel
+yum install git -y
+sudo gem install svn2git
+yum install git-svn
+
+---客户端rsa
+
+---subgit迁移svn到git当中
+https://subgit.com/download/subgit-3.2.2.zip
+
+--git仓库地址
+/var/opt/gitlab/git-data/repositories/root
+---列出所有svn账号信息
+svn log --quiet | grep -E "r[0-9]+ \| .+ \|" | cut -d'|' -f2 | sed 's/ //g' | sort | uniq
+https://github.com/gaomingjie/gitNex.git
+
+git svn clone https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF –no-metadata –trunk=trunk SMF
+
+---修改环境变量
+vim /etc/profile
+source /etc/profile
+
+------
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk --authors /home/gaomj/authors.txt
+
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk --trunk trunk --nobranches --notags
+
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk --rootistrunk --authors authors.txt 
+-------Author: (no author) not defined in authors.txt file
+(no author) = gaomingjie <gaomingjie@shoujinwang.com>
+
+---
+git remote add origin git@192.168.70.4:sjpt/SMF.git
+git remote add origin git@192.168.70.4:sjpt/SmartSchedule.git
+git remote add origin git@192.168.70.4:sjpt/repayment.git
+git remote add origin git@192.168.70.4:sjpt/MarketingActivity.git
+--git remote set-url origin git@192.168.70.4:sjw/sjpt.git
+git push --all origin
+
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk/SMF --rootistrunk --authors /home/gaomj/authors.txt 
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk/repayment --rootistrunk --authors /home/gaomj/authors.txt 
+svn2git https://192.168.20.2:10096/svn/sjwwd/sjpt/SMF/trunk/MarketingActivity --rootistrunk --authors /home/gaomj/authors.txt 
+
+----
+git push origin --delete <branchName>
+git push origin --delete tag <tagname>
+
+
+
+------------------------拉分支并提交-------------
+-----查看远程分支
+ git branch -a  
+ ----查看本地分支
+ git branch  
+ ----创建分支
+ git branch test  
+ -----线面是把分支推到远程分支 
+ git push origin test  
+ ---- 切换分支到test
+ ---------删除本地分支   git branch -d xxxxx
+ ---
+ 删除远程分支  
+git branch -r -d origin/branch-name  
+git push origin :branch-name  
+------------------------------------------------------
+---创建分支，然后切换本地分支
+ git branch test
+ git checkout test
+ -------------------------------
+ git log --since=2.weeks
+ git log --author="gaomingjie"
+ git log --grep="add"
+ git log --format=short
+ git log --graph
+ git log --oneline --graph --all --decorate
+ 
+ git show --format=oneline HEAD
+  git log --oneline
+ git diff d9575d8
+ 
+ git diff --stat --summary d9575d8..HEAD
+ cat .git/HEAD
+ cat .git/refs/heads
+ ls -la .git/refs/heads
+ ------------------------------
+ 本地合并之后，再次提交
+ git merge remotes/origin/niuNoProtect
+ git push origin master
+ ---------------------------------
+#Step 1. Update the repo and checkout the branch we are going to merge 
+git fetch origin
+git checkout -b test origin/feature-test
+
+#Step 2. Merge the branch and push the changes to GitLab 
+git checkout release-2016.4.7
+git merge --no-ff feature-test
+git push origin release-2016.4.7
+------------------------------------------------------
+$ git checkout -b feature-test
+do something and commit...
+$ git push origin feature-test
+--------------------------------------
+

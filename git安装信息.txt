@@ -1,0 +1,16 @@
+git config --global user.name "niuxiaozu"
+git config --global user.email "niuxiaozu@shoujinwang.com"
+
+ssh-keygen -t rsa -C "niuxiaozu@shoujinwang.com"
+cat ~/.ssh/id_rsa.pub
+
+/root/.ssh/id_rsa
+123456
+
+/usr/.git
+
+
+
+----------------------------
+git config -l
+git config -version

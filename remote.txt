@@ -1,0 +1,26 @@
+4.如何用命令查看，修改remote url：
+如果你在连接github仓库的时候，用的https协议的地址，还需要切换为git协议
+可以用git remote -v 查看你当前的remote url
+$ git remote -v
+origin https://github.com/love-somnus/Spring.git (fetch)
+origin https://github.com/love-somnus/Spring.git (push)
+可以看到是使用https协议进行访问的。
+这时，你可以使用 git remote set-url 来调整你的url。
+git remote set-url origin git@github.com:love-somnus/Spring.git
+完了之后，你便可以再用 git remote -v 查看一下。至此OK。
+5.查看本地SSH Key是否正常：
+$ ssh -T git@github.com
+# Attempts to ssh to github
+出现如下信息表示设置成功：
+Hi username! You've successfully authenticated, but GitHub does not # provide shell access.
+
+备注：
+1.使用eclipse插件提交项目至远程必须先本地提交，最后提交至远程仓库
+2.查看谁提交了代码，项目右击“team”--“show history”
+3.查看提交记录：Team--Show in History   (命令行为：git log)
+4.撤销恢复修改：Replace With--HEAD Revision (命令行为 git checkout head .)
+5.更新项目远程仓库：Team-- Pull (命令行：git pull https://github.com/someone/xxx.git)
+6.查看哪些文件被修改了：Team--Synchronize Workspace
+7.提交项目时注意忽略不必要的文件或文件夹如maven项目下的target文件夹忽略
+8.git提供了多重协议用来连接git服务器，其中最常见的就是https和git，git就是可以免用户名和密码的，不同的协议，项目连接地址是有区别的，如下
+https形式：https://github.com/love-somnus/Spring.git  git形式：git@github.com:love-somnus/Spring.git
